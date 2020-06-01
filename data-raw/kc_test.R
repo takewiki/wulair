@@ -7,19 +7,20 @@ app_id <-'caas'
 
 # 同步所有数据
 # 后续需要定时更新
-#kc_updateAll(conn,app_id)
+# kc_updateAll(conn,app_id)
 
 
 #新增知识分类
-# kc_ins <-kc_create(conn,app_id,'RDS','GGE')
-# print(kc_ins)
+ #kc_ins <-kc_create(conn,app_id,'RDS','GGG4')
+ #print(kc_ins)
 
-kc_del <- kc_delete(conn,app_id,'GGE')
-print(kc_del)
-
-
+#kc_del <- kc_delete(conn,app_id,'GGE')
+#print(kc_del)
 
 
-
-
+# library(reticulate)
+#
+# py_config()
+#
+# py_config_error_message()
 
