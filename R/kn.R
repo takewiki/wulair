@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' kn_create()
-kn_create <- function(conn,app_id,kn_name="test1_test2_test3", kc_name='rdstest2') {
+kn_create <- function(conn,app_id, kc_name='rdstest2',kn_name="test1_test2_test3") {
   use_python("/usr/local/bin/python3",required = T);
   wl <- import('pywulai')
   kms <- wl$kms

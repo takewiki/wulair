@@ -11,7 +11,7 @@ app_id <-'caas'
 
 
 #新增知识分类
- #kc_ins <-kc_create(conn,app_id,'RDS','GGG4')
+ #kc_ins <-kc_create(conn,app_id,'RDS','kntest12')
  #print(kc_ins)
 
 #kc_del <- kc_delete(conn,app_id,'GGE')

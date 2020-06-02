@@ -4,16 +4,16 @@
 \alias{kn_create}
 \title{创建知识点}
 \usage{
-kn_create(conn, app_id, kn_name = "test1_test2_test3", kc_name = "rdstest2")
+kn_create(conn, app_id, kc_name = "rdstest2", kn_name = "test1_test2_test3")
 }
 \arguments{
 \item{conn}{连接}
 
 \item{app_id}{程序id}
 
-\item{kn_name}{标准问名称}
-
 \item{kc_name}{知识分类名称}
+
+\item{kn_name}{标准问名称}
 }
 \value{
 返回知识点信息

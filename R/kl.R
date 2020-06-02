@@ -15,7 +15,7 @@ kl_create <- function(conn,app_id,kn_name, kl_name="test1212") {
   use_python("/usr/local/bin/python3",required = T);
   wl <- import('pywulai')
   kms <- wl$kms
-  res <- kms$wulai_kl_create(conn,app_id,kn_name, kl_name="test1212")
+  res <- kms$wulai_kl_create(conn,app_id,kn_name, kl_name)
   return(res)
 
 }
