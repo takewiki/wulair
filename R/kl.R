@@ -12,7 +12,8 @@
 #' @examples
 #' kn_create()
 kl_create <- function(conn,app_id,kn_name, kl_name="test1212") {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$wulai_kl_create(conn,app_id,kn_name, kl_name)
@@ -35,7 +36,8 @@ kl_create <- function(conn,app_id,kn_name, kl_name="test1212") {
 #' kl_delete()
 kl_delete <- function(conn,app_id,kn_name,kl_name) {
 
-  use_python("/usr/local/bin/python3",required = T);
+  # use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$wulai_kl_delete(conn,app_id,kn_name,kl_name)
@@ -60,7 +62,8 @@ kl_delete <- function(conn,app_id,kn_name,kl_name) {
 #' kl_getId()
 kl_getId <- function(conn,app_id,kn_name,kl_name) {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$kl_getId(conn,app_id,kn_name,kl_name)
@@ -82,7 +85,8 @@ kl_getId <- function(conn,app_id,kn_name,kl_name) {
 #' @examples
 #' kl_getName()
 kl_getName <- function(conn,app_id,kl_id) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$kl_getName(conn,app_id,kl_id)
@@ -107,7 +111,8 @@ kl_getName <- function(conn,app_id,kl_id) {
 #' kl_update()
 kl_update <- function(conn,app_id,kn_name,old_kl_name,new_kl_name) {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$wulai_kl_update(conn,app_id,kn_name,old_kl_name,new_kl_name)
@@ -132,7 +137,8 @@ kl_update <- function(conn,app_id,kn_name,old_kl_name,new_kl_name) {
 #' kl_push()
 kl_push <- function(conn,app_id,kn_name, page=1, page_size=50,format='list') {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$wulai_kl_query(conn,app_id,kn_name, page, page_size,format)

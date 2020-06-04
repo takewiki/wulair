@@ -12,7 +12,8 @@
 #' @examples
 #' kn_create()
 kn_create <- function(conn,app_id, kc_name='rdstest2',kn_name="test1_test2_test3") {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$wulai_kn_create(conn,app_id,kn_name, kc_name)
@@ -33,7 +34,8 @@ kn_create <- function(conn,app_id, kc_name='rdstest2',kn_name="test1_test2_test3
 #' @examples
 #' kn_getId()
 kn_getId <- function(conn,app_id,kn_name) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$kn_getId(conn,app_id,kn_name)
@@ -57,7 +59,8 @@ kn_getId <- function(conn,app_id,kn_name) {
 #' kn_getName()
 kn_getName <- function(conn,app_id,kn_id) {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$kn_getName(conn,app_id,kn_id)
@@ -81,7 +84,8 @@ kn_getName <- function(conn,app_id,kn_id) {
 #' kn_delete()
 kn_delete <- function(conn,app_id,kn_name) {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <-kms$wulai_kn_delete(conn,app_id,kn_name)
@@ -102,7 +106,8 @@ kn_delete <- function(conn,app_id,kn_name) {
 #' @examples
 #' kn_update()
 kn_update <- function(conn,app_id,old_kn_name,new_kn_name) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
 
@@ -128,7 +133,8 @@ kn_update <- function(conn,app_id,old_kn_name,new_kn_name) {
 #' kn_push()
 kn_push <- function(conn,app_id,kc_name, page=1, page_size=50,format='list') {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$wulai_kn_query(conn,app_id,kc_name, page=1, page_size=50,format='list')

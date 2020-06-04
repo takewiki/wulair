@@ -10,7 +10,11 @@
 #' @examples
 #' kc_init()
 kc_init <- function(conn,app_id) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  #不再使用连接的方式
+  #使用虚拟环境更容易对python包进行维护
+  #use_virtualenv('/opt/my_env',required = TRUE)
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   kms$kc_initial_setUp(conn,app_id)
@@ -29,7 +33,11 @@ kc_init <- function(conn,app_id) {
 #' @examples
 #' kc_push()
 kc_push <- function(conn,app_id) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  #不再使用连接的方式
+  #使用虚拟环境更容易对python包进行维护
+  #use_virtualenv('/opt/my_env',required = TRUE)
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   kms$kc_updateAll(conn,app_id)
@@ -49,7 +57,11 @@ kc_push <- function(conn,app_id) {
 #' @examples
 #' kc_create()
 kc_create <- function(conn,app_id,kc_parentName,kc_name) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  #不再使用连接的方式
+  #使用虚拟环境更容易对python包进行维护
+  #use_virtualenv('/opt/my_env',required = TRUE)
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$kc_create(conn,app_id,kc_parentName,kc_name)
@@ -72,7 +84,11 @@ kc_create <- function(conn,app_id,kc_parentName,kc_name) {
 #' kc_delete()
 kc_delete <- function(conn,app_id,kc_name) {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  #不再使用连接的方式
+  #使用虚拟环境更容易对python包进行维护
+  #use_virtualenv('/opt/my_env',required = TRUE)
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <-kms$kc_delete(conn,app_id,kc_name)
@@ -95,7 +111,8 @@ kc_delete <- function(conn,app_id,kc_name) {
 #' @examples
 #' kc_update()
 kc_update <- function(conn,app_id,old_kc_name,new_kc_name) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <-kms$kc_update(conn,app_id,old_kc_name,new_kc_name)
@@ -116,7 +133,8 @@ kc_update <- function(conn,app_id,old_kc_name,new_kc_name) {
 #' @examples
 #' kc_getId()
 kc_getId <- function(conn,app_id,kc_name) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <-kms$kc_getId(conn,app_id,kc_name)
@@ -137,7 +155,8 @@ kc_getId <- function(conn,app_id,kc_name) {
 #' @examples
 #' kc_getName()
 kc_getName <- function(conn,app_id,kc_id) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$kc_getName(conn,app_id,kc_id)
@@ -159,7 +178,11 @@ kc_getName <- function(conn,app_id,kc_id) {
 #' @examples
 #' kc_getParentId()
 kc_getParentId <- function(conn,app_id,kc_name) {
-  use_python("/usr/local/bin/python3",required = T);
+  # use_python("/usr/local/bin/python3",required = T);
+  #不再使用连接的方式
+  #使用虚拟环境更容易对python包进行维护
+  #use_virtualenv('/opt/my_env',required = TRUE)
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res < - kms$kc_getParentId(conn,app_id,kc_name)
@@ -181,7 +204,8 @@ kc_getParentId <- function(conn,app_id,kc_name) {
 #' @examples
 #' kc_getParentName()
 kc_getParentName <- function(conn,app_id,kc_name) {
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
 

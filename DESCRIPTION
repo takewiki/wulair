@@ -1,7 +1,7 @@
 Package: wulair
 Type: Package
 Title: wulai api in R language
-Version: 0.3.0
+Version: 0.5.0
 Author: hulilei
 Maintainer: hulilei <hulilei@takewiki.com.cn>
 Description: More about what it does (maybe more than one line)

@@ -14,7 +14,8 @@
 #' kk_create()
 kk_create <- function(conn,app_id,kn_name,kk_name) {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$wulai_kk_create(conn,app_id,kn_name,kk_name)
@@ -37,7 +38,8 @@ kk_create <- function(conn,app_id,kn_name,kk_name) {
 #' kk_getId()
 kk_getId <- function(conn,app_id,kn_name,kk_name) {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$kk_getId(conn,app_id,kn_name,kk_name)
@@ -60,7 +62,8 @@ kk_getId <- function(conn,app_id,kn_name,kk_name) {
 kk_getName <- function(conn,app_id,kk_id) {
 
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$kk_getName(conn,app_id,kk_id)
@@ -82,7 +85,8 @@ kk_getName <- function(conn,app_id,kk_id) {
 #' kk_delete()
 kk_delete <- function(conn,app_id,kn_name,kk_name) {
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$wulai_kk_delete(conn,app_id,kn_name,kk_name)
@@ -108,7 +112,8 @@ kk_delete <- function(conn,app_id,kn_name,kk_name) {
 kk_update <- function(conn,app_id,kn_name,old_kk_name,new_kk_name) {
 
 
-  use_python("/usr/local/bin/python3",required = T);
+  # use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
   res <- kms$wuali_kk_update(conn,app_id,kn_name,old_kk_name,new_kk_name)
@@ -135,7 +140,8 @@ kk_update <- function(conn,app_id,kn_name,old_kk_name,new_kk_name) {
 kl_push <- function(conn,app_id,kn_name, uag_id="0", page=1, page_size=50,format='list') {
 
 
-  use_python("/usr/local/bin/python3",required = T);
+  #use_python("/usr/local/bin/python3",required = T);
+  tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
 
