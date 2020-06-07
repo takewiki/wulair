@@ -122,21 +122,18 @@ kn_update <- function(conn,app_id,old_kn_name,new_kn_name) {
 #' @param conn 连接
 #' @param app_id 程序id
 #' @param kc_name 知识分类名称
-#' @param page 显示页数
-#' @param page_size 每个显示条数
-#' @param format 格式
 #'
 #' @return 返回值
 #' @export
 #'
 #' @examples
 #' kn_push()
-kn_push <- function(conn,app_id,kc_name, page=1, page_size=50,format='list') {
+kn_push <- function(conn,app_id,kc_name) {
 
   #use_python("/usr/local/bin/python3",required = T);
   tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
-  res <- kms$wulai_kn_query(conn,app_id,kc_name, page=1, page_size=50,format='list')
+  res <- kms$wulai_kn_query(conn,app_id,kc_name)
 
 }

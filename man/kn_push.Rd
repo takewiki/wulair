@@ -4,7 +4,7 @@
 \alias{kn_push}
 \title{提交知识点更新到数据库}
 \usage{
-kn_push(conn, app_id, kc_name, page = 1, page_size = 50, format = "list")
+kn_push(conn, app_id, kc_name)
 }
 \arguments{
 \item{conn}{连接}
@@ -12,12 +12,6 @@ kn_push(conn, app_id, kc_name, page = 1, page_size = 50, format = "list")
 \item{app_id}{程序id}
 
 \item{kc_name}{知识分类名称}
-
-\item{page}{显示页数}
-
-\item{page_size}{每个显示条数}
-
-\item{format}{格式}
 }
 \value{
 返回值
