@@ -169,6 +169,7 @@ get_db_kk_del <- function(conn_r=tsda::conn_rds('rdbe'),app_id='caas') {
 #' @param time 间隔时间默认1秒50个
 #'
 #' @return 返回值
+#' @import shiny
 #' @export
 #'
 #' @examples
@@ -179,15 +180,22 @@ kk_pushBatch <- function(conn_kms,conn_r=tsda::conn_rds('rdbe'),app_id='caas',ti
   #
   kn_names <- get_kn_names(conn_r,app_id)
 
-  print(kn_names)
-  lapply(kn_names, function(kn_name){
-    print(kn_name)
-    try({
-      kk_push(conn_kms,app_id,kn_name)
-    })
+  withProgress(message = '标准答推送处理中', value = 0, {
+    ncount =length(kn_names)
+    lapply(1:ncount, function(i){
+      kn_name <- kn_names[[i]]
+      print(kn_name)
+      try({
+        kk_push(conn_kms,app_id,kn_name)
+      })
+      incProgress(1/ncount, detail = paste("(",i,"/",ncount,")..."))
 
-    Sys.sleep(time)
+      Sys.sleep(time)
+    })
   })
+
+  #print(kn_names)
+
 
 }
 

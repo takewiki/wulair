@@ -142,3 +142,59 @@ kl_push <- function(conn,app_id,kn_name) {
   return(res)
 
 }
+
+
+#' 删除相似问列表
+#'
+#' @param conn_r 连接
+#' @param app_id 程序
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' get_db_kl_del()
+get_db_kl_del <- function(conn_r=tsda::conn_rds('rdbe'),app_id='caas') {
+  sql <- paste0("delete   from t_km_kl where Fapp_id ='",app_id,"'")
+  tsda::sql_update(conn_r,sql)
+
+}
+
+
+#' 针对相似问进行推送
+#'
+#' @param conn_kms 连接py
+#' @param conn_r 连接r
+#' @param app_id 程序
+#' @param time 时间
+#'
+#' @return 返回值
+#' @import shiny
+#' @export
+#'
+#' @examples
+#' kl_pushBatch()
+kl_pushBatch <- function(conn_kms,conn_r=tsda::conn_rds('rdbe'),app_id='caas',time=0.02) {
+  #删除数据
+  get_db_kl_del(conn_r,app_id)
+  #
+  kn_names <- get_kn_names(conn_r,app_id)
+
+  withProgress(message = '相似问推送处理中', value = 0, {
+    ncount =length(kn_names)
+    lapply(1:ncount, function(i){
+      kn_name <- kn_names[[i]]
+      print(kn_name)
+      try({
+        kl_push(conn_kms,app_id,kn_name)
+      })
+      incProgress(1/ncount, detail = paste("(",i,"/",ncount,")..."))
+
+      Sys.sleep(time)
+    })
+  })
+
+  #print(kn_names)
+
+
+}

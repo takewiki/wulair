@@ -167,6 +167,7 @@ get_db_kn_del <- function(conn_r=tsda::conn_rds('rdbe'),app_id='caas') {
 #' @param app_id   程序名称
 #'
 #' @return 返回值
+#' @import shiny
 #' @export
 #'
 #' @examples
@@ -176,8 +177,16 @@ kn_pushBatch <- function(conn_kms,conn_rdb=tsda::conn_rds('rdbe'),app_id='caas')
   get_db_kn_del(conn_rdb,app_id)
   #其他内容
   kc_names <- get_kc_names(conn_rdb,app_id)
-  lapply(kc_names, function(kc_name){
-    kn_push(conn_kms,app_id,kc_name)
+  withProgress(message = '标准问推送处理中', value = 0, {
+
+    ncount <- length(kc_names)
+
+    lapply(1:ncount, function(i){
+      kc_name <- kc_names[[i]]
+      kn_push(conn_kms,app_id,kc_name)
+      incProgress(1/ncount, detail = paste("(",i,"/",ncount,")..."))
+    })
   })
+
 
 }
