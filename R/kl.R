@@ -126,22 +126,19 @@ kl_update <- function(conn,app_id,kn_name,old_kl_name,new_kl_name) {
 #' @param conn 连接
 #' @param app_id 程序
 #' @param kn_name 知识点名称
-#' @param page 页数
-#' @param page_size 每页大家
-#' @param format 格式
 #'
 #' @return 返回值
 #' @export
 #'
 #' @examples
 #' kl_push()
-kl_push <- function(conn,app_id,kn_name, page=1, page_size=50,format='list') {
+kl_push <- function(conn,app_id,kn_name) {
 
   #use_python("/usr/local/bin/python3",required = T);
   tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
-  res <- kms$wulai_kl_query(conn,app_id,kn_name, page, page_size,format)
+  res <- kms$wulai_kl_query(conn,app_id,kn_name)
   return(res)
 
 }

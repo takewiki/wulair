@@ -9,7 +9,10 @@ kn_name = 'kntest11'
 kc_name = 'RDS'
 
 
-kn_push(conn = conn,'caas','RDS')
+kn_pushBatch(conn_kms = conn)
+
+
+#kn_push(conn,app_id,'捷豹路虎_精品')
 
 # kl_name='kntest11_kl4'
 #

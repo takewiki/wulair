@@ -127,17 +127,13 @@ kk_update <- function(conn,app_id,kn_name,old_kk_name,new_kk_name) {
 #' @param conn 连接
 #' @param app_id 程序
 #' @param kn_name  知识点
-#' @param uag_id 用户组默认0
-#' @param page 页数
-#' @param page_size 每页大小
-#' @param format 格式
 #'
 #' @return 返回值
 #' @export
 #'
 #' @examples
-#' kl_push()
-kl_push <- function(conn,app_id,kn_name, uag_id="0", page=1, page_size=50,format='list') {
+#' kk_push()
+kk_push <- function(conn,app_id,kn_name) {
 
 
   #use_python("/usr/local/bin/python3",required = T);
@@ -145,7 +141,56 @@ kl_push <- function(conn,app_id,kn_name, uag_id="0", page=1, page_size=50,format
   wl <- import('pywulai')
   kms <- wl$kms
 
-  res <- kms$wulai_kk_query(conn,app_id,kn_name, uag_id, page, page_size,format)
+  res <- kms$wulai_kk_query(conn,app_id,kn_name)
 
 }
+
+#' 删除标准答列表数据
+#'
+#' @param conn_r 连接
+#' @param app_id 程序
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' get_db_kk_del()
+get_db_kk_del <- function(conn_r=tsda::conn_rds('rdbe'),app_id='caas') {
+  sql <- paste0("delete   from t_km_kk where Fapp_id ='",app_id,"'")
+  tsda::sql_update(conn_r,sql)
+
+}
+
+#' 批量批取标准答
+#'
+#' @param conn_kms 连接py
+#' @param conn_r 连接r
+#' @param app_id 程序
+#' @param time 间隔时间默认1秒50个
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' kk_pushBatch
+kk_pushBatch <- function(conn_kms,conn_r=tsda::conn_rds('rdbe'),app_id='caas',time=0.02) {
+  #删除数据
+  get_db_kk_del(conn_r,app_id)
+  #
+  kn_names <- get_kn_names(conn_r,app_id)
+
+  print(kn_names)
+  lapply(kn_names, function(kn_name){
+    print(kn_name)
+    try({
+      kk_push(conn_kms,app_id,kn_name)
+    })
+
+    Sys.sleep(time)
+  })
+
+}
+
+
+
 

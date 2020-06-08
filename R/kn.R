@@ -134,6 +134,50 @@ kn_push <- function(conn,app_id,kc_name) {
   tsda::set_py()
   wl <- import('pywulai')
   kms <- wl$kms
-  res <- kms$wulai_kn_query(conn,app_id,kc_name)
+  res <- kms$wulai_kn_query2(conn,app_id,kc_name)
+
+}
+
+
+
+
+
+
+#' 删除相关数据
+#'
+#' @param conn_r 连接
+#' @param app_id 程序
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' get_db_kn_del()
+get_db_kn_del <- function(conn_r=tsda::conn_rds('rdbe'),app_id='caas') {
+  sql <- paste0("delete   from t_km_kn where Fapp_id ='",app_id,"'")
+  data <- tsda::sql_update(conn_r,sql)
+
+}
+
+
+#' 批量批送相关信息
+#'
+#' @param conn_kms 通过py连接数据库
+#' @param conn_rdb 通过r连接数据库
+#' @param app_id   程序名称
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' kn_pushBatch()
+kn_pushBatch <- function(conn_kms,conn_rdb=tsda::conn_rds('rdbe'),app_id='caas') {
+  #删除库中历史数据
+  get_db_kn_del(conn_rdb,app_id)
+  #其他内容
+  kc_names <- get_kc_names(conn_rdb,app_id)
+  lapply(kc_names, function(kc_name){
+    kn_push(conn_kms,app_id,kc_name)
+  })
 
 }

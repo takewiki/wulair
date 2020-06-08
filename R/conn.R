@@ -34,4 +34,53 @@ conn <- function() {
 }
 
 
+#' 获取分类列表名称
+#'
+#' @param conn 连接
+#' @param app_id 程序
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' get_kc_names()
+get_kc_names <- function(conn=tsda::conn_rds('rdbe'),app_id='caas') {
+  sql <- paste0("select Fname from t_km_kc where Fapp_id ='",app_id,"'")
+  data <- tsda::sql_select(conn,sql)
+  ncount <- nrow(data)
+  if(ncount>0){
+    item <- data$Fname
+    res <- tsdo::vect_as_list(item)
 
+  }else{
+    res <-list("")
+  }
+  return(res)
+
+}
+
+
+#' 获取名称点的所有问题列表
+#'
+#' @param conn_r 连接
+#' @param app_id 程序
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' get_kn_names()
+get_kn_names <- function(conn_r=tsda::conn_rds('rdbe'),app_id='caas') {
+  sql <-paste0("select Fkn_name from t_km_kn where Fapp_id ='",app_id,"'")
+  data <- tsda::sql_select(conn_r,sql)
+  ncount <- nrow(data)
+  if(ncount>0){
+    item <- data$Fkn_name
+    res <- tsdo::vect_as_list(item)
+
+  }else{
+    res <-list("")
+  }
+  return(res)
+
+}
