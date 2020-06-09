@@ -200,5 +200,43 @@ kk_pushBatch <- function(conn_kms,conn_r=tsda::conn_rds('rdbe'),app_id='caas',ti
 }
 
 
+#' 自动推送标准答，用于自动同步
+#'
+#' @param conn_kms py连接
+#' @param conn_r   r连接
+#' @param app_id 程序
+#' @param time 时间间隔
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' kk_pushBatch_auto()
+kk_pushBatch_auto <- function(conn_kms,conn_r=tsda::conn_rds('rdbe'),app_id='caas',time=0.02) {
+  #删除数据
+  get_db_kk_del(conn_r,app_id)
+  #
+  kn_names <- get_kn_names(conn_r,app_id)
+
+
+    ncount =length(kn_names)
+    lapply(1:ncount, function(i){
+      kn_name <- kn_names[[i]]
+      print(kn_name)
+      try({
+        kk_push(conn_kms,app_id,kn_name)
+      })
+
+
+      Sys.sleep(time)
+
+  })
+
+  #print(kn_names)
+
+
+}
+
+
 
 

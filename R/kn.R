@@ -190,3 +190,34 @@ kn_pushBatch <- function(conn_kms,conn_rdb=tsda::conn_rds('rdbe'),app_id='caas')
 
 
 }
+
+
+#' 批量更新知识点用于自动同
+#'
+#' @param conn_kms py连接
+#' @param conn_rdb r连接
+#' @param app_id 程序
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' kn_pushBatch_auto()
+kn_pushBatch_auto <- function(conn_kms,conn_rdb=tsda::conn_rds('rdbe'),app_id='caas') {
+  #删除库中历史数据
+  get_db_kn_del(conn_rdb,app_id)
+  #其他内容
+  kc_names <- get_kc_names(conn_rdb,app_id)
+
+
+    ncount <- length(kc_names)
+
+    lapply(1:ncount, function(i){
+      kc_name <- kc_names[[i]]
+      kn_push(conn_kms,app_id,kc_name)
+
+
+  })
+
+
+}
