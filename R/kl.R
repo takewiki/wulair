@@ -223,7 +223,7 @@ kl_pushBatch_auto <- function(conn_kms,conn_r=tsda::conn_rds('rdbe'),app_id='caa
     ncount =length(kn_names)
     lapply(1:ncount, function(i){
       kn_name <- kn_names[[i]]
-      print(kn_name)
+     # print(kn_name)
       try({
         kl_push(conn_kms,app_id,kn_name)
       })
